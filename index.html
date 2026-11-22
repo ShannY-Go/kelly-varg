@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a111b">
+  <meta name="description" content="Личное досье Келли Варг — архив персонажа.">
+  <title>Келли Варг — личное досье</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a111b;
+      --bg-2: #101b2a;
+      --panel: rgba(19, 31, 48, .70);
+      --panel-strong: rgba(22, 37, 57, .88);
+      --text: #edf5ff;
+      --muted: #9aadc3;
+      --cyan: #8fe6ff;
+      --cyan-2: #4dbce9;
+      --blue: #557cff;
+      --gold: #e6c98a;
+      --line: rgba(174, 216, 255, .13);
+      --shadow: 14px 14px 34px rgba(0, 0, 0, .42), -10px -10px 28px rgba(107, 157, 207, .055);
+      --inset: inset 5px 5px 14px rgba(0,0,0,.30), inset -5px -5px 14px rgba(122,174,222,.055);
+      --radius: 26px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 12% 4%, rgba(44,130,194,.18), transparent 34rem),
+        radial-gradient(ellipse at 91% 26%, rgba(76,89,202,.16), transparent 34rem),
+        radial-gradient(ellipse at 48% 92%, rgba(36,149,169,.10), transparent 40rem),
+        linear-gradient(145deg, #0b1420 0%, #0a111b 48%, #0d1725 100%);
+      font-family: "Manrope", system-ui, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      width: 23rem; height: 23rem;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .10;
+      pointer-events: none;
+      z-index: -1;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    body::before { background: #36bde8; top: 25%; left: -14rem; }
+    body::after { background: #6676ff; right: -15rem; top: 63%; animation-delay: -8s; }
+    @keyframes drift { to { transform: translate(5rem,-3rem) scale(1.18); } }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .shell { width: min(1180px, calc(100% - 42px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid rgba(170,210,255,.08);
+      background: rgba(8, 15, 25, .68);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+    }
+    .topbar-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-family: Orbitron, sans-serif; font-size: 12px; letter-spacing: .16em; }
+    .brand-mark {
+      width: 34px; height: 34px; border-radius: 12px; display: grid; place-items: center;
+      color: var(--cyan); border: 1px solid rgba(143,230,255,.24);
+      background: linear-gradient(145deg, rgba(81,171,217,.24), rgba(21,37,62,.58));
+      box-shadow: 5px 5px 12px #050a11, -4px -4px 12px rgba(143,201,255,.06), 0 0 22px rgba(93,212,255,.12);
+    }
+    .nav { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+    .nav a { transition: color .2s, text-shadow .2s; }
+    .nav a:hover { color: var(--cyan); text-shadow: 0 0 15px rgba(143,230,255,.55); }
+    .nav-status { display:flex; align-items:center; gap:8px; color:#8bd9c6; font-size:10px; letter-spacing:.12em; }
+    .nav-status::before { content:""; width:6px;height:6px;border-radius:50%;background:#6be6be;box-shadow:0 0 12px #6be6be; }
+    .hero { min-height: 650px; display: grid; grid-template-columns: 1.12fr .88fr; align-items: center; gap: 54px; padding-top: 52px; padding-bottom: 74px; }
+    .eyebrow { color: var(--cyan); font: 600 10px Orbitron, sans-serif; letter-spacing: .22em; text-transform: uppercase; display:flex; align-items:center; gap:12px; }
+    .eyebrow::before { content:""; width:28px; height:1px; background:var(--cyan); box-shadow:0 0 10px var(--cyan); }
+    h1 { font: 600 clamp(48px, 7vw, 84px)/1.05 Orbitron, sans-serif; letter-spacing: -.055em; margin: 24px 0 14px; text-shadow: 0 0 34px rgba(95,183,255,.12); }
+    .hero-subtitle { color: var(--gold); font: 500 12px Orbitron,sans-serif; letter-spacing:.18em; text-transform:uppercase; margin:0 0 22px; }
+    .hero-copy { color: #b4c6d9; max-width: 610px; line-height: 1.9; font-size: 15px; }
+    .hero-quote { margin-top: 34px; padding: 18px 21px; border-left: 2px solid var(--cyan-2); color:#c8d6e8; background:linear-gradient(90deg,rgba(84,188,233,.09),transparent); border-radius:0 16px 16px 0; }
+    .hero-quote strong { display:block; font-weight:600; font-size:14px; }
+    .hero-quote span { color:var(--muted); display:block; margin-top:8px; font:500 9px Orbitron,sans-serif; letter-spacing:.18em; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+    .button {
+      border:1px solid rgba(143,230,255,.24); color:var(--text); border-radius:14px; padding:13px 18px;
+      background:linear-gradient(145deg,rgba(37,71,99,.76),rgba(13,26,43,.9));
+      box-shadow:7px 7px 16px rgba(0,0,0,.38),-5px -5px 14px rgba(123,185,231,.055),inset 1px 1px 0 rgba(255,255,255,.06);
+      font-size:10px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; transition:.25s;
+    }
+    .button:hover { transform:translateY(-3px); border-color:rgba(143,230,255,.55); box-shadow:0 0 24px rgba(78,193,238,.15),7px 9px 20px rgba(0,0,0,.4); }
+    .button.secondary { color:var(--muted); border-color:var(--line); background:rgba(19,31,48,.48); }
+    .hero-visual { position:relative; min-height:480px; display:grid; place-items:center; }
+    .orbit { position:absolute; width:min(440px,95%); aspect-ratio:1; border:1px solid rgba(127,213,255,.14); border-radius:50%; box-shadow:0 0 50px rgba(67,165,221,.08),inset 0 0 40px rgba(70,155,213,.06); animation: slowspin 34s linear infinite; }
+    .orbit::before,.orbit::after { content:""; position:absolute; width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 20px 5px rgba(106,222,255,.65); }
+    .orbit::before { top:13%;left:20%; } .orbit::after { bottom:16%;right:13%;width:5px;height:5px; }
+    @keyframes slowspin { to { transform:rotate(360deg); } }
+    .portrait-shell {
+      position:relative; width:min(340px, 78%); aspect-ratio: .78; border-radius: 44% 44% 31px 31px;
+      padding:12px; overflow:hidden;
+      background:linear-gradient(145deg,rgba(133,210,255,.28),rgba(21,39,61,.08) 38%,rgba(20,31,51,.85));
+      border:1px solid rgba(175,227,255,.22); box-shadow:22px 24px 55px rgba(0,0,0,.42),-12px -12px 35px rgba(123,190,231,.08),0 0 45px rgba(70,183,231,.14);
+      backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+    }
+    .portrait-inner { width:100%;height:100%;border-radius:inherit;overflow:hidden;position:relative;background:radial-gradient(ellipse at 50% 30%,#243f5e 0%,#14243a 46%,#0b1421 100%); }
+    .portrait-inner img { width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:2; }
+    .portrait-placeholder { position:absolute;inset:0;display:grid;place-items:center;overflow:hidden; }
+    .portrait-placeholder::before { content:"";position:absolute;width:76%;aspect-ratio:1;border-radius:50%;border:1px solid rgba(149,225,255,.28);box-shadow:0 0 65px rgba(74,196,255,.18),inset 0 0 48px rgba(89,181,238,.15); }
+    .silhouette { position:relative;width:52%;height:75%;margin-top:18%; }
+    .silhouette::before { content:"";position:absolute;top:3%;left:26%;width:48%;height:32%;border-radius:48% 48% 42% 42%;background:linear-gradient(135deg,#9abbd0,#385776 65%,#20334c);box-shadow:0 0 24px rgba(128,212,255,.2); }
+    .silhouette::after { content:"";position:absolute;left:7%;bottom:-3%;width:86%;height:68%;border-radius:47% 47% 13% 13%;background:linear-gradient(120deg,#6d92ac,#1b344f 54%,#101e32);clip-path:polygon(30% 0,70% 0,100% 100%,0 100%); }
+    .saber-glow { position:absolute;z-index:3;right:13%;top:10%;width:3px;height:65%;background:#baf5ff;border-radius:10px;box-shadow:0 0 7px 3px #a8eeff,0 0 22px 9px rgba(71,192,255,.56);transform:rotate(13deg);opacity:.85; }
+    .portrait-caption { position:absolute;z-index:4;left:22px;right:22px;bottom:19px;display:flex;justify-content:space-between;align-items:end;color:#d5eaff;font:500 9px Orbitron,sans-serif;letter-spacing:.13em;text-shadow:0 1px 8px #05101c; }
+    .portrait-caption small { color:#94b5ce;font-size:8px;display:block;margin-top:7px; }
+    .visual-tag { position:absolute;z-index:5; padding:10px 13px;border:1px solid rgba(166,224,255,.2);border-radius:12px;background:rgba(13,27,44,.68);backdrop-filter:blur(18px);box-shadow:var(--shadow);font:500 9px Orbitron,sans-serif;letter-spacing:.12em;color:var(--cyan); }
+    .visual-tag.top { right:-3%;top:17%; } .visual-tag.bottom { left:-4%;bottom:17%;color:var(--gold); }
+    .section { padding: 38px 0 85px; }
+    .section-heading { display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:26px; }
+    .section-kicker { color:var(--cyan);font:600 9px Orbitron,sans-serif;letter-spacing:.2em;text-transform:uppercase;margin-bottom:11px; }
+    h2 { font:500 clamp(25px,3.5vw,38px)/1.2 Orbitron,sans-serif;letter-spacing:-.03em;margin:0; }
+    .section-note { color:var(--muted);font-size:12px;max-width:310px;line-height:1.7;text-align:right; }
+    .glass {
+      position:relative;overflow:hidden;border-radius:var(--radius);
+      background:linear-gradient(145deg,rgba(29,48,70,.64),rgba(12,23,38,.82));
+      border:1px solid rgba(171,220,255,.12);
+      box-shadow:var(--shadow),var(--inset);
+      backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%);
+    }
+    .glass::before { content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(125deg,rgba(255,255,255,.055),transparent 28%,transparent 72%,rgba(130,206,255,.035));opacity:.8; }
+    .glass > * { position:relative;z-index:1; }
+    .profile-grid { display:grid;grid-template-columns:1.1fr .9fr;gap:20px; }
+    .identity-card { padding:28px; }
+    .card-overline { color:var(--muted);font:500 9px Orbitron,sans-serif;letter-spacing:.18em;text-transform:uppercase; }
+    .identity-name { font:500 27px Orbitron,sans-serif;margin:11px 0 22px; }
+    .spec-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:12px; }
+    .spec {
+      padding:16px 17px;border-radius:17px;background:rgba(8,17,29,.38);
+      box-shadow:inset 4px 4px 10px rgba(0,0,0,.28),inset -3px -3px 10px rgba(121,183,225,.045);
+      border:1px solid rgba(174,220,255,.07);min-height:84px;
+    }
+    .spec label { display:block;color:#7f9ab3;font:500 8px Orbitron,sans-serif;letter-spacing:.15em;text-transform:uppercase;margin-bottom:9px; }
+    .spec strong { font-size:13px;font-weight:700;line-height:1.5; }
+    .showcase-stack { display:grid;gap:20px; }
+    .showcase { padding:23px 25px;min-height:128px;transition:transform .25s,border-color .25s; }
+    .showcase:hover { transform:translateY(-4px);border-color:rgba(137,220,255,.28); }
+    .showcase-top { display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--cyan);font:600 9px Orbitron,sans-serif;letter-spacing:.15em;text-transform:uppercase; }
+    .showcase-icon { width:38px;height:38px;border-radius:13px;display:grid;place-items:center;color:var(--cyan);font-size:17px;background:linear-gradient(145deg,rgba(74,168,220,.22),rgba(12,28,49,.7));box-shadow:5px 5px 12px rgba(0,0,0,.36),-4px -4px 10px rgba(139,201,245,.055); }
+    .showcase h3 { font-size:17px;margin:13px 0 0;font-weight:700; }
+    .showcase details { margin-top:10px;color:var(--muted);font-size:11px;line-height:1.65; }
+    .showcase summary { cursor:pointer;list-style:none;color:#9cb3ca;font-size:10px; }
+    .showcase summary::-webkit-details-marker { display:none; }
+    .traits-grid { display:grid;grid-template-columns:1fr 1fr;gap:20px; }
+    .trait-panel { padding:25px; }
+    .trait-panel h3 { margin:0 0 18px;font:500 14px Orbitron,sans-serif;letter-spacing:.08em;display:flex;align-items:center;gap:11px; }
+    .trait-panel h3::before { content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 13px var(--cyan); }
+    .trait-panel.weak h3::before { background:#e5bb81;box-shadow:0 0 13px #e5bb81; }
+    .trait-card { border-top:1px solid var(--line);padding:13px 0;color:#d5e1ee; }
+    .trait-card summary { cursor:pointer;list-style:none;display:grid;grid-template-columns:25px 1fr 16px;align-items:center;gap:10px;font-size:12px;font-weight:700; }
+    .trait-card summary::-webkit-details-marker { display:none; }
+    .trait-index { color:#6f91ad;font:500 9px Orbitron,sans-serif; }
+    .trait-plus { color:var(--cyan);font-size:16px;text-align:center;transition:transform .2s; }
+    .trait-card[open] .trait-plus { transform:rotate(45deg); }
+    .trait-card p { color:var(--muted);font-size:11px;line-height:1.8;margin:13px 4px 2px 35px; }
+    .personality-card { padding:30px; }
+    .personality-card p { color:#b6c7d8;font-size:13px;line-height:2.05;margin:18px 0 0; }
+    .story-list { display:grid;gap:15px; }
+    .story-card { padding:0; }
+    .story-card summary { cursor:pointer;list-style:none;padding:23px 26px;display:grid;grid-template-columns:46px 1fr 20px;gap:17px;align-items:center; }
+    .story-card summary::-webkit-details-marker { display:none; }
+    .chapter-no { width:42px;height:42px;display:grid;place-items:center;border-radius:14px;color:var(--cyan);font:500 11px Orbitron,sans-serif;background:rgba(58,144,189,.12);box-shadow:var(--inset); }
+    .chapter-title { font:500 15px Orbitron,sans-serif;display:block; }
+    .chapter-subtitle { font-size:10px;color:var(--muted);display:block;margin-top:7px; }
+    .chapter-arrow { color:var(--cyan);font-size:19px;transition:transform .25s; }
+    .story-card[open] .chapter-arrow { transform:rotate(45deg); }
+    .chapter-body { border-top:1px solid var(--line);padding:8px 30px 27px 89px; }
+    .chapter-quote { color:var(--gold);font:500 10px Orbitron,sans-serif;letter-spacing:.11em;margin:18px 0; }
+    .chapter-body p { color:#b2c5d8;font-size:12px;line-height:2;margin:15px 0; }
+    .record-grid { display:grid;grid-template-columns:1fr 1fr;gap:20px; }
+    .record-card { padding:27px; }
+    .record-card h3 { font:500 13px Orbitron,sans-serif;letter-spacing:.09em;margin:0 0 17px;color:var(--cyan); }
+    .ability-list { display:flex;flex-wrap:wrap;gap:9px; }
+    .ability {
+      border:1px solid rgba(138,214,255,.13);background:rgba(6,18,31,.36);border-radius:12px;padding:10px 12px;
+      color:#c7d8e9;font-size:10px;box-shadow:inset 3px 3px 7px rgba(0,0,0,.23),inset -2px -2px 7px rgba(122,187,230,.045);
+    }
+    .record-meta { display:grid;gap:13px; }
+    .record-meta div { display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding-bottom:12px;font-size:11px; }
+    .record-meta span { color:var(--muted); }
+    .record-meta strong { color:#e2edf7;text-align:right; }
+    .gallery-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:16px; }
+    .gallery-card { margin:0;position:relative;overflow:hidden;aspect-ratio:4/3;border-radius:20px;border:1px solid rgba(170,219,255,.13);background:linear-gradient(145deg,rgba(35,57,83,.7),rgba(11,21,35,.9));box-shadow:var(--shadow); }
+    .gallery-card img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;cursor:zoom-in; }
+    .gallery-card:hover img { transform:scale(1.05); }
+    .gallery-card figcaption { position:absolute;bottom:0;left:0;right:0;padding:32px 14px 13px;background:linear-gradient(transparent,rgba(4,10,18,.9));font-size:10px;color:#e4f2ff;pointer-events:none; }
+    .gallery-empty { grid-column:1/-1;min-height:190px;display:grid;place-items:center;text-align:center;padding:30px;color:var(--muted);border:1px dashed rgba(153,209,244,.18);border-radius:22px;background:rgba(13,25,41,.35); }
+    .gallery-empty strong { display:block;color:#d8eafa;font:500 12px Orbitron,sans-serif;letter-spacing:.1em;margin-bottom:9px; }
+    .gallery-empty span { font-size:11px;line-height:1.7; }
+    .gallery-remove { display:none;position:absolute;z-index:4;top:10px;right:10px;border:0;border-radius:10px;background:rgba(8,15,25,.88);color:#fff;width:30px;height:30px; }
+    .admin-mode .gallery-remove { display:block; }
+    .footer { border-top:1px solid rgba(170,210,255,.08);padding:32px 0 48px;color:#70869c;font-size:9px;letter-spacing:.12em;text-transform:uppercase; }
+    .footer-inner { display:flex;justify-content:space-between;gap:20px;align-items:center; }
+    .footer strong { color:#b6d8ed;font-family:Orbitron,sans-serif;font-weight:500; }
+    .admin-panel {
+      display:none;position:fixed;z-index:40;left:50%;bottom:18px;transform:translateX(-50%);
+      width:min(920px,calc(100% - 28px));padding:14px 16px;border-radius:20px;
+      background:rgba(9,18,30,.92);border:1px solid rgba(144,220,255,.28);backdrop-filter:blur(24px);
+      box-shadow:0 20px 55px rgba(0,0,0,.55),0 0 35px rgba(75,191,235,.12);
+    }
+    .admin-mode .admin-panel { display:block; }
+    .admin-row { display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap; }
+    .admin-title { color:#8fe6ff;font:600 10px Orbitron,sans-serif;letter-spacing:.14em; }
+    .admin-actions { display:flex;gap:8px;flex-wrap:wrap; }
+    .admin-actions button,.admin-actions label {
+      border:1px solid rgba(145,215,255,.16);border-radius:10px;padding:9px 11px;background:rgba(31,54,78,.7);color:#d6e8f7;
+      font-size:9px;font-weight:800;letter-spacing:.08em;cursor:pointer;
+    }
+    .admin-actions button.primary { background:linear-gradient(135deg,#1e789b,#254d83);border-color:rgba(143,230,255,.36); }
+    .admin-actions button.danger { color:#e9b5a9; }
+    .admin-help { color:#8fa7bd;font-size:9px;line-height:1.55;margin-top:9px; }
+    [data-bind][contenteditable="true"] { outline:1px dashed rgba(131,224,255,.55);outline-offset:4px;border-radius:3px;cursor:text; }
+    [data-bind][contenteditable="true"]:focus { outline:1px solid rgba(131,224,255,.95);background:rgba(54,144,188,.08); }
+    .login-backdrop,.lightbox { display:none;position:fixed;inset:0;z-index:60;align-items:center;justify-content:center;padding:20px;background:rgba(2,7,13,.78);backdrop-filter:blur(15px); }
+    .login-backdrop.open,.lightbox.open { display:flex; }
+    .login-card { width:min(390px,100%);padding:28px;border:1px solid rgba(151,219,255,.24);border-radius:24px;background:linear-gradient(145deg,rgba(28,49,72,.97),rgba(9,19,33,.97));box-shadow:0 30px 90px rgba(0,0,0,.65),0 0 40px rgba(66,176,224,.12); }
+    .login-card h3 { font:500 18px Orbitron,sans-serif;margin:0 0 9px; }
+    .login-card p { color:var(--muted);font-size:11px;line-height:1.6;margin:0 0 18px; }
+    .login-input { width:100%;padding:14px 15px;border-radius:12px;border:1px solid rgba(151,219,255,.2);outline:none;background:#0b1726;color:#fff;box-shadow:var(--inset);letter-spacing:.25em; }
+    .login-input:focus { border-color:var(--cyan);box-shadow:0 0 0 3px rgba(143,230,255,.1); }
+    .login-actions { display:flex;gap:10px;margin-top:15px; }
+    .login-actions button { flex:1; }
+    .login-error { display:none;color:#f0a99b;font-size:10px;margin-top:12px; }
+    .lightbox img { max-width:min(92vw,1100px);max-height:86vh;border-radius:18px;box-shadow:0 20px 80px #000; }
+    .lightbox button { position:absolute;top:20px;right:24px;background:rgba(18,32,49,.8);border:1px solid var(--line);color:#fff;border-radius:12px;width:42px;height:42px;font-size:20px; }
+    .toast { position:fixed;z-index:80;top:92px;left:50%;transform:translate(-50%,-12px);opacity:0;pointer-events:none;padding:11px 16px;border-radius:12px;background:rgba(12,29,45,.94);border:1px solid rgba(143,230,255,.25);color:#dff7ff;font-size:11px;box-shadow:var(--shadow);transition:.25s; }
+    .toast.show { opacity:1;transform:translate(-50%,0); }
+    .admin-hint { display:none;position:fixed;right:20px;bottom:20px;color:#70869c;font:9px Orbitron,sans-serif;letter-spacing:.12em;opacity:.55; }
+    @media (max-width:850px) {
+      .nav { gap:12px;font-size:9px; }.hero { grid-template-columns:1fr;gap:18px;padding-top:70px; }.hero-copy { max-width:720px; }.hero-visual { min-height:430px; }.profile-grid,.record-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:620px) {
+      .shell { width:min(100% - 28px,1180px); }.topbar-inner { min-height:65px; }.nav { display:none; }.nav-status { font-size:8px; }
+      .hero { min-height:auto;padding-top:58px;padding-bottom:50px; }.hero-visual { min-height:360px; }.portrait-shell { width:min(280px,72%); }.orbit { width:320px; }
+      .section { padding:28px 0 58px; }.section-heading { align-items:start;flex-direction:column; }.section-note { text-align:left; }
+      .traits-grid { grid-template-columns:1fr; }.spec-grid { grid-template-columns:1fr 1fr; }.identity-card,.trait-panel,.personality-card,.record-card { padding:21px; }
+      .chapter-body { padding:5px 20px 22px; }.story-card summary { padding:19px;grid-template-columns:38px 1fr 15px;gap:12px; }.chapter-no { width:36px;height:36px; }
+      .gallery-grid { grid-template-columns:1fr 1fr; }.footer-inner { align-items:start;flex-direction:column; }.admin-panel { bottom:8px;padding:12px; }.admin-row { align-items:flex-start; }.admin-actions { width:100%; }.admin-actions button,.admin-actions label { flex:1;text-align:center; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top"><span class="brand-mark">✧</span><span>ARCHIVE / KV</span></a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="#profile" data-bind="ui.nav.0">Досье</a><a href="#character" data-bind="ui.nav.1">Характер</a><a href="#story" data-bind="ui.nav.2">История</a><a href="#abilities" data-bind="ui.nav.3">Способности</a><a href="#gallery" data-bind="ui.nav.4">Галерея</a>
+      </nav>
+      <div class="nav-status">АРХИВ АКТИВЕН</div>
+    </div>
+  </header>
+
+  <main id="siteRoot">
+    <section class="shell hero" id="top">
+      <div class="hero-content">
+        <div class="eyebrow" data-bind="site.eyebrow"></div>
+        <h1 data-bind="site.name"></h1>
+        <p class="hero-subtitle" data-bind="site.subtitle"></p>
+        <p class="hero-copy" data-bind="site.intro"></p>
+        <div class="hero-quote">
+          <strong data-bind="site.quote"></strong>
+          <span data-bind="site.quoteBy"></span>
+        </div>
+        <div class="hero-actions">
+          <a class="button" href="#profile"><span data-bind="ui.heroPrimary">Открыть досье</span> <span aria-hidden="true">↘</span></a>
+          <a class="button secondary" href="#story" data-bind="ui.heroSecondary">Изучить историю</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="orbit"></div>
+        <div class="portrait-shell">
+          <div class="portrait-inner" id="portraitInner">
+            <div class="portrait-placeholder" id="portraitPlaceholder"><div class="silhouette"></div><div class="saber-glow"></div></div>
+            <img id="portraitImage" alt="Портрет Келли Варг" hidden>
+            <div class="portrait-caption"><div><span data-bind="identity.name"></span><small>PERSONAL RECORD / 01</small></div><span>JEDI ARCHIVE</span></div>
+          </div>
+        </div>
+        <div class="visual-tag top">FORCE · LIGHT</div>
+        <div class="visual-tag bottom">BLUE KYBER</div>
+      </div>
+    </section>
+
+    <section class="shell section" id="profile">
+      <div class="section-heading">
+        <div><div class="section-kicker" data-bind="ui.profileKicker"></div><h2 data-bind="ui.profileTitle"></h2></div>
+        <p class="section-note" data-bind="ui.profileNote"></p>
+      </div>
+      <div class="profile-grid">
+        <article class="glass identity-card">
+          <div class="card-overline" data-bind="ui.identityCardLabel"></div>
+          <div class="identity-name" data-bind="identity.name"></div>
+          <div class="spec-grid">
+            <div class="spec"><label data-bind="ui.specLabels.0">Возраст</label><strong data-bind="identity.age"></strong></div>
+            <div class="spec"><label data-bind="ui.specLabels.1">Раса</label><strong data-bind="identity.species"></strong></div>
+            <div class="spec"><label data-bind="ui.specLabels.2">Сторона Силы</label><strong data-bind="identity.forceSide"></strong></div>
+            <div class="spec"><label data-bind="ui.specLabels.3">Принадлежность</label><strong data-bind="identity.faction"></strong></div>
+            <div class="spec"><label data-bind="ui.specLabels.4">Должность / звание</label><strong data-bind="identity.rank"></strong></div>
+            <div class="spec"><label data-bind="ui.specLabels.5">Снаряжение</label><strong data-bind="identity.weapon"></strong></div>
+            <div class="spec"><label data-bind="ui.specLabels.6">Фамилия матери</label><strong data-bind="identity.motherSurname"></strong></div>
+          </div>
+        </article>
+        <div class="showcase-stack">
+          <article class="glass showcase">
+            <div class="showcase-top"><span data-bind="ui.showcaseLabels.0">01 / ALIGNMENT</span><span class="showcase-icon">✧</span></div>
+            <h3 data-bind="identity.forceSide"></h3>
+            <details><summary data-bind="ui.showcaseDetail">Показать отметку архива</summary><p data-bind="ui.showcaseDescription">Сведения из исходного досье персонажа.</p></details>
+          </article>
+          <article class="glass showcase">
+            <div class="showcase-top"><span data-bind="ui.showcaseLabels.1">02 / AFFILIATION</span><span class="showcase-icon">⌖</span></div>
+            <h3 data-bind="identity.faction"></h3>
+            <details><summary data-bind="ui.showcaseDetail">Показать отметку архива</summary><p data-bind="ui.showcaseDescription">Сведения из исходного досье персонажа.</p></details>
+          </article>
+          <article class="glass showcase">
+            <div class="showcase-top"><span data-bind="ui.showcaseLabels.2">03 / EQUIPMENT</span><span class="showcase-icon">ϟ</span></div>
+            <h3 data-bind="identity.weapon"></h3>
+            <details><summary data-bind="ui.showcaseDetail">Показать отметку архива</summary><p data-bind="ui.showcaseDescription">Сведения из исходного досье персонажа.</p></details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section" id="character">
+      <div class="section-heading">
+        <div><div class="section-kicker" data-bind="ui.traitsKicker"></div><h2 data-bind="ui.traitsTitle"></h2></div>
+        <p class="section-note" data-bind="ui.traitsNote"></p>
+      </div>
+      <div class="traits-grid">
+        <article class="glass trait-panel weak">
+          <h3 data-bind="ui.weakTitle">Слабые стороны</h3>
+          <div id="weaknessList"></div>
+        </article>
+        <article class="glass trait-panel">
+          <h3 data-bind="ui.strongTitle">Сильные стороны</h3>
+          <div id="strengthList"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell section" id="personality">
+      <div class="section-heading">
+        <div><div class="section-kicker" data-bind="ui.personalityKicker"></div><h2 data-bind="personality.heading"></h2></div>
+        <p class="section-note" data-bind="ui.personalityNote"></p>
+      </div>
+      <article class="glass personality-card" id="personalityText"></article>
+    </section>
+
+    <section class="shell section" id="story">
+      <div class="section-heading">
+        <div><div class="section-kicker" data-bind="ui.storyKicker"></div><h2 data-bind="story.heading"></h2></div>
+        <p class="section-note" data-bind="ui.storyNote"></p>
+      </div>
+      <div class="story-list" id="storyList"></div>
+    </section>
+
+    <section class="shell section" id="abilities">
+      <div class="section-heading">
+        <div><div class="section-kicker" data-bind="ui.abilitiesKicker"></div><h2 data-bind="ui.abilitiesTitle"></h2></div>
+        <p class="section-note" data-bind="ui.abilitiesNote"></p>
+      </div>
+      <div class="record-grid">
+        <article class="glass record-card">
+          <h3 data-bind="ui.abilitiesListTitle">ЗНАНИЯ И СПОСОБНОСТИ</h3>
+          <div class="ability-list" id="abilityList"></div>
+        </article>
+        <article class="glass record-card">
+          <h3 data-bind="ui.additionalInfoTitle">ДОПОЛНИТЕЛЬНЫЕ СВЕДЕНИЯ</h3>
+          <div class="record-meta">
+            <div><span data-bind="ui.canonLabel">Канон / не канон</span><strong data-bind="record.canon"></strong></div>
+            <div><span data-bind="ui.transportLabel">Транспорт</span><strong data-bind="record.transport"></strong></div>
+            <div><span data-bind="ui.affiliationLabel">Принадлежность</span><strong data-bind="identity.faction"></strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell section" id="gallery">
+      <div class="section-heading">
+        <div><div class="section-kicker" data-bind="ui.galleryKicker"></div><h2 data-bind="ui.galleryTitle"></h2></div>
+        <p class="section-note" data-bind="ui.galleryNote"></p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <strong data-bind="ui.footerTitle">ARCHIVE / KELLY VARG</strong>
+      <span data-bind="ui.footerText">Персональное досье · Неофициальный персонаж</span>
+      <a href="#top" data-bind="ui.footerTop">НАВЕРХ ↑</a>
+    </div>
+  </footer>
+
+  <div class="admin-panel" id="adminPanel" aria-live="polite">
+    <div class="admin-row">
+      <div class="admin-title">✦ РЕЖИМ АДМИНИСТРАТОРА · ТЕКСТ МОЖНО РЕДАКТИРОВАТЬ ПРЯМО НА СТРАНИЦЕ</div>
+      <div class="admin-actions">
+        <label for="portraitUpload">Загрузить портрет</label>
+        <input id="portraitUpload" type="file" accept="image/*" hidden>
+        <label for="galleryUpload">Добавить изображения</label>
+        <input id="galleryUpload" type="file" accept="image/*" multiple hidden>
+        <button id="saveDraft">Сохранить черновик</button>
+        <button id="exportData" class="primary">Экспорт для GitHub</button>
+        <button id="logout" class="danger">Выйти</button>
+      </div>
+    </div>
+    <div class="admin-help">Изменения сохраняются в этом браузере. Чтобы опубликовать их для всех посетителей, скачай site-data.json и замени им одноимённый файл в репозитории GitHub. Загруженные картинки будут включены в JSON автоматически.</div>
+  </div>
+
+  <div class="login-backdrop" id="loginBackdrop">
+    <form class="login-card" id="loginForm">
+      <h3>ДОСТУП К АРХИВУ</h3>
+      <p>Введи пароль администратора, чтобы открыть редактирование досье.</p>
+      <input class="login-input" id="adminPassword" type="password" inputmode="numeric" autocomplete="off" placeholder="••••••••" aria-label="Пароль администратора">
+      <div class="login-error" id="loginError">Неверный пароль. Попробуй ещё раз.</div>
+      <div class="login-actions">
+        <button class="button" type="submit">Войти</button>
+        <button class="button secondary" type="button" id="cancelLogin">Отмена</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="lightbox" id="lightbox"><button id="closeLightbox" aria-label="Закрыть">×</button><img id="lightboxImage" alt="Увеличенное изображение"></div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const ADMIN_PASSWORD = "76717671";
+    const DRAFT_KEY = "kelly-varg-site-draft-v1";
+    let data = null;
+    let adminMode = false;
+
+    const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
+      "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+    }[ch]));
+    const getPath = (obj, path) => path.split(".").reduce((v, k) => v == null ? "" : v[k], obj);
+    function setPath(obj, path, value) {
+      const keys = path.split(".");
+      let target = obj;
+      for (let i=0;i<keys.length-1;i++) target = target[keys[i]];
+      target[keys[keys.length-1]] = value;
+    }
+    const field = (path, tag="p", cls="") =>
+      `<${tag} class="${cls}" data-bind="${path}">${esc(getPath(data,path)).replace(/\n/g,"<br>")}</${tag}>`;
+
+    function renderTraits(targetId, list, prefix) {
+      const target = document.getElementById(targetId);
+      target.innerHTML = list.map((item,i) => `
+        <details class="trait-card">
+          <summary><span class="trait-index">${String(i+1).padStart(2,"0")}</span>
+            <strong data-bind="traits.${prefix}.${i}.title">${esc(item.title)}</strong><span class="trait-plus">+</span>
+          </summary>
+          <p data-bind="traits.${prefix}.${i}.text">${esc(item.text)}</p>
+        </details>`).join("");
+    }
+
+    function render() {
+      document.querySelectorAll("[data-bind]").forEach(el => {
+        const value = getPath(data, el.dataset.bind);
+        el.textContent = value ?? "";
+      });
+      document.title = `${data.site.name} — ${data.site.subtitle}`;
+      renderTraits("weaknessList", data.traits.weaknesses, "weaknesses");
+      renderTraits("strengthList", data.traits.strengths, "strengths");
+
+      document.getElementById("personalityText").innerHTML =
+        data.personality.paragraphs.map((p,i)=>`<p data-bind="personality.paragraphs.${i}">${esc(p)}</p>`).join("");
+
+      document.getElementById("storyList").innerHTML = data.story.chapters.map((ch,i)=>`
+        <details class="glass story-card">
+          <summary>
+            <span class="chapter-no">${String(i+1).padStart(2,"0")}</span>
+            <span><span class="chapter-title" data-bind="story.chapters.${i}.title">${esc(ch.title)}</span>
+              <span class="chapter-subtitle" data-bind="story.chapters.${i}.quote">${esc(ch.quote)}</span></span>
+            <span class="chapter-arrow">＋</span>
+          </summary>
+          <div class="chapter-body">
+            ${ch.paragraphs.map((p,j)=>`<p data-bind="story.chapters.${i}.paragraphs.${j}">${esc(p)}</p>`).join("")}
+          </div>
+        </details>`).join("");
+
+      document.getElementById("abilityList").innerHTML = data.record.abilities.map((ability,i)=>
+        `<span class="ability" data-bind="record.abilities.${i}">${esc(ability)}</span>`).join("");
+
+      const portrait = document.getElementById("portraitImage");
+      const placeholder = document.getElementById("portraitPlaceholder");
+      if (data.identity.portrait) {
+        portrait.src = data.identity.portrait;
+        portrait.hidden = false;
+        placeholder.hidden = true;
+      } else {
+        portrait.hidden = true;
+        portrait.removeAttribute("src");
+        placeholder.hidden = false;
+      }
+
+      const gallery = document.getElementById("galleryGrid");
+      if (!data.gallery.length) {
+        gallery.innerHTML = `<div class="gallery-empty"><div><strong data-bind="ui.galleryEmptyTitle">${esc(data.ui.galleryEmptyTitle)}</strong><span data-bind="ui.galleryEmptyText">${esc(data.ui.galleryEmptyText)}</span></div></div>`;
+      } else {
+        gallery.innerHTML = data.gallery.map((item,i)=>`
+          <figure class="gallery-card" data-gallery-index="${i}">
+            <img src="${item.src}" alt="${esc(item.caption || "Изображение Келли Варг")}" data-lightbox="${i}">
+            <figcaption data-bind="gallery.${i}.caption">${esc(item.caption || "Архивное изображение")}</figcaption>
+            <button class="gallery-remove" type="button" data-remove-image="${i}" aria-label="Удалить изображение">×</button>
+          </figure>`).join("");
+      }
+      setEditMode(adminMode);
+    }
+
+    function setEditMode(enabled) {
+      adminMode = enabled;
+      document.body.classList.toggle("admin-mode", enabled);
+      document.querySelectorAll("[data-bind]").forEach(el => {
+        el.contentEditable = enabled ? "true" : "false";
+        el.spellcheck = enabled;
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(()=>toast.classList.remove("show"),2800);
+    }
+
+    function saveDraft(showMessage=true) {
+      try {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+        if (showMessage) showToast("Черновик сохранён в этом браузере.");
+      } catch (err) {
+        showToast("Не удалось сохранить черновик. Скачай файл через «Экспорт для GitHub».");
+      }
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "site-data.json";
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+      showToast("Файл site-data.json подготовлен для GitHub.");
+    }
+
+    async function loadImage(file) {
+      if (!file || !file.type.startsWith("image/")) throw new Error("Выбери файл изображения.");
+      const image = new Image();
+      const source = URL.createObjectURL(file);
+      try {
+        await new Promise((resolve,reject)=>{ image.onload=resolve; image.onerror=reject; image.src=source; });
+        const maxSide = 1900;
+        const scale = Math.min(1, maxSide / Math.max(image.naturalWidth,image.naturalHeight));
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1,Math.round(image.naturalWidth*scale));
+        canvas.height = Math.max(1,Math.round(image.naturalHeight*scale));
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(image,0,0,canvas.width,canvas.height);
+        return canvas.toDataURL("image/webp",0.82);
+      } finally { URL.revokeObjectURL(source); }
+    }
+
+    function openLogin() {
+      document.getElementById("loginBackdrop").classList.add("open");
+      document.getElementById("adminPassword").value = "";
+      document.getElementById("loginError").style.display = "none";
+      setTimeout(()=>document.getElementById("adminPassword").focus(),50);
+    }
+    function closeLogin() { document.getElementById("loginBackdrop").classList.remove("open"); }
+
+    document.getElementById("loginForm").addEventListener("submit", e=>{
+      e.preventDefault();
+      if (document.getElementById("adminPassword").value === ADMIN_PASSWORD) {
+        closeLogin();
+        setEditMode(true);
+        showToast("Режим администратора включён.");
+      } else {
+        document.getElementById("loginError").style.display = "block";
+      }
+    });
+    document.getElementById("cancelLogin").addEventListener("click",closeLogin);
+    document.getElementById("loginBackdrop").addEventListener("click",e=>{ if(e.target.id==="loginBackdrop") closeLogin(); });
+
+    document.addEventListener("keydown",e=>{
+      const target = e.target;
+      const isTyping = target && (target.matches("input,textarea") || target.isContentEditable);
+      if (e.shiftKey && e.key.toLowerCase()==="e" && !isTyping) {
+        e.preventDefault();
+        if (!adminMode) openLogin();
+      }
+      if (e.key==="Escape") {
+        closeLogin();
+        document.getElementById("lightbox").classList.remove("open");
+      }
+    });
+
+    document.addEventListener("input",e=>{
+      const el = e.target.closest("[data-bind]");
+      if (!el || !adminMode) return;
+      setPath(data,el.dataset.bind,el.innerText.replace(/\r/g,""));
+      saveDraft(false);
+    });
+
+    document.getElementById("saveDraft").addEventListener("click",()=>saveDraft(true));
+    document.getElementById("exportData").addEventListener("click",exportData);
+    document.getElementById("logout").addEventListener("click",()=>{
+      saveDraft(false); setEditMode(false); showToast("Режим администратора выключен.");
+    });
+
+    document.getElementById("portraitUpload").addEventListener("change",async e=>{
+      try {
+        const encoded = await loadImage(e.target.files[0]);
+        data.identity.portrait = encoded; render(); saveDraft(false);
+        showToast("Портрет добавлен. Не забудь экспортировать файл для GitHub.");
+      } catch(err) { showToast(err.message || "Ошибка загрузки изображения."); }
+      e.target.value="";
+    });
+    document.getElementById("galleryUpload").addEventListener("change",async e=>{
+      const files = [...e.target.files];
+      for (const file of files) {
+        try {
+          const encoded = await loadImage(file);
+          data.gallery.push({src:encoded,caption:file.name.replace(/\.[^.]+$/,"") || "Архивное изображение"});
+        } catch(err) { showToast(err.message || "Не удалось загрузить изображение."); }
+      }
+      render(); saveDraft(false);
+      if(files.length) showToast("Изображения добавлены в галерею.");
+      e.target.value="";
+    });
+
+    document.getElementById("galleryGrid").addEventListener("click",e=>{
+      const remove = e.target.closest("[data-remove-image]");
+      if (remove && adminMode) {
+        data.gallery.splice(Number(remove.dataset.removeImage),1);
+        render(); saveDraft(false); showToast("Изображение удалено из черновика."); return;
+      }
+      const img = e.target.closest("img[data-lightbox]");
+      if (img) {
+        document.getElementById("lightboxImage").src = img.src;
+        document.getElementById("lightbox").classList.add("open");
+      }
+    });
+    document.getElementById("closeLightbox").addEventListener("click",()=>document.getElementById("lightbox").classList.remove("open"));
+    document.getElementById("lightbox").addEventListener("click",e=>{if(e.target.id==="lightbox") e.currentTarget.classList.remove("open");});
+
+    async function init() {
+      try {
+        const response = await fetch("./site-data.json", {cache:"no-store"});
+        if (!response.ok) throw new Error("site-data.json not found");
+        data = await response.json();
+        const draft = localStorage.getItem(DRAFT_KEY);
+        if (draft) {
+          try { data = JSON.parse(draft); } catch {}
+        }
+        render();
+      } catch (err) {
+        document.getElementById("siteRoot").innerHTML = `<div class="shell section"><article class="glass personality-card"><h2>Не удалось загрузить данные архива</h2><p>Убедись, что файл <strong>site-data.json</strong> лежит рядом с index.html и сайт открыт через GitHub Pages или локальный веб-сервер.</p></article></div>`;
+      }
+    }
+    init();
+  </script>
+</body>
+</html>
